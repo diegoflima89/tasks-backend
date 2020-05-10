@@ -33,7 +33,7 @@ pipeline{
             steps{
                 dir('api-test') {
                 git credentialsId: 'github_login', url: 'https://github.com/diegoflima89/tasks-api-test'
-                bat 'msn test'
+                bat 'mvn test'
                 }
             }
         }
@@ -50,7 +50,7 @@ pipeline{
             steps{
                 dir('funcional-test') {
                 git credentialsId: 'github_login', url: 'https://github.com/diegoflima89/tasks-funcional-tests'
-                bat 'msn test'
+                bat 'mvn test'
                 }
             }
         }
