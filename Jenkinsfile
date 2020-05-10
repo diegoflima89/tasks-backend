@@ -40,9 +40,17 @@ pipeline{
         stage ('Deploy Frontend'){
             steps{
                 dir('frontend') {
-                git credentialsId: 'github_login', url: 'https://github.com/diegoflima89/tasks-frontend'
-                bat 'mvn clean package'
-                deploy adapters: [tomcat8(credentialsId: 'github_login', path: '', url: 'http://localhost:8001/')], contextPath: 'tasks', war: 'target/tasks.war'
+                    git credentialsId: 'github_login', url: 'https://github.com/diegoflima89/tasks-frontend'
+                    bat 'mvn clean package'
+                    deploy adapters: [tomcat8(credentialsId: 'github_login', path: '', url: 'http://localhost:8001/')], contextPath: 'tasks', war: 'target/tasks.war'
+                }
+            }
+        }
+        stage ('Funcional Test'){
+            steps{
+                dir('funcional-test') {
+                git credentialsId: 'github_login', url: 'https://github.com/diegoflima89/tasks-funcional-tests'
+                bat 'msn test'
                 }
             }
         }
